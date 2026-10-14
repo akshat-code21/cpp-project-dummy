@@ -45,16 +45,16 @@ public:
     std::vector<Level> get_asks(int depth = 10) const;
 };
 
-int to_tick(double p)
+inline int to_tick(double p)
 {
     return (int)std::llround(p * 100.0);
 }
 
-double to_price(int tick) { 
+inline double to_price(int tick) { 
     return tick / 100.0; 
 }
 
-bool is_valid_price(Side s, int tick)
+inline bool is_valid_price(Side s, int tick)
 {
     switch (s)
     {

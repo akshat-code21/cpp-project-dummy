@@ -66,7 +66,7 @@ private:
 public:
     MapOrderBook()
     {
-        orders_.reserve(1 << 20);
+        orders_.reserve(8192);
     }
 
     void add_order(uint64_t id, Side side, double price, long qty)
