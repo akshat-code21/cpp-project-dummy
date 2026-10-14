@@ -1,6 +1,7 @@
 #include <vector>
 #include <cstddef>
 #include <cstdint>
+#include <cmath>
 
 constexpr int MIN_BID_TICK = 5000;
 constexpr int MAX_BID_TICK = 9999;
@@ -49,10 +50,13 @@ int to_tick(double p)
     return (int)std::llround(p * 100.0);
 }
 
-bool valid_price(Side s, int tick)
+double to_price(int tick) { 
+    return tick / 100.0; 
+}
+
+bool is_valid_price(Side s, int tick)
 {
-    Side side = static_cast<Side>(s);
-    switch (side)
+    switch (s)
     {
     case Side::Buy:
         if (tick >= MIN_BID_TICK && tick <= MAX_BID_TICK)
@@ -68,4 +72,3 @@ bool valid_price(Side s, int tick)
         return false;
     }
 }
-
