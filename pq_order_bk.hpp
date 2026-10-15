@@ -57,7 +57,7 @@ private:
             if (lvl == levels.end())
                 continue;
 
-            out.push_back({to_price(tick), lvl->second});
+            out.push_back({tick, lvl->second});
             last = tick;
         }
         return out;
@@ -85,9 +85,9 @@ public:
         ask_levels_.reserve(8192);
     }
 
-    void add_order(uint64_t id, Side side, double price, long qty)
+    void add_order(uint64_t id, Side side, int price, long qty)
     {
-        int tick = to_tick(price);
+        int tick = price;
 
         if (qty <= 0 || !is_valid_price(side, tick) || orders_.count(id) != 0)
         {
@@ -130,7 +130,7 @@ public:
         {
             auto tick = bid_heap_.top();
             b.has_bid = true;
-            b.bid_price = to_price(tick);
+            b.bid_price = tick;
             b.bid_qty = bid_levels_.at(tick);
         }
 
@@ -138,7 +138,7 @@ public:
         {
             auto tick = ask_heap_.top();
             b.has_ask = true;
-            b.ask_price = to_price(tick);
+            b.ask_price = tick;
             b.ask_qty = ask_levels_.at(tick);
         }
 

@@ -1,7 +1,6 @@
 #include <vector>
 #include <cstddef>
 #include <cstdint>
-#include <cmath>
 
 constexpr int MIN_BID_TICK = 5000;
 constexpr int MAX_BID_TICK = 9999;
@@ -16,25 +15,25 @@ enum class Side
 
 struct Level
 {
-    double price;
+    int price;
     long qty;
 };
 
 struct BBO
 {
     bool has_bid;
-    double bid_price;
+    int bid_price;
     long bid_qty;
 
     bool has_ask;
-    double ask_price;
+    int ask_price;
     long ask_qty;
 };
 
 class OrderBook
 {
 public:
-    void add_order(uint64_t id, Side side, double price, long qty);
+    void add_order(uint64_t id, Side side, int price, long qty);
 
     bool cancel_order(uint64_t id);
 
@@ -44,15 +43,6 @@ public:
 
     std::vector<Level> get_asks(int depth = 10) const;
 };
-
-inline int to_tick(double p)
-{
-    return (int)std::llround(p * 100.0);
-}
-
-inline double to_price(int tick) { 
-    return tick / 100.0; 
-}
 
 inline bool is_valid_price(Side s, int tick)
 {
