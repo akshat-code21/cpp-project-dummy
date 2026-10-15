@@ -58,7 +58,7 @@ private:
         out.reserve(depth);
 
         for (auto it = book.begin(); it != book.end() && (int)out.size() < depth; ++it)
-            out.push_back({to_price(it->first), it->second.total_qty});
+            out.push_back({it->first, it->second.total_qty});
 
         return out;
     }
@@ -69,9 +69,9 @@ public:
         orders_.reserve(8192);
     }
 
-    void add_order(uint64_t id, Side side, double price, long qty)
+    void add_order(uint64_t id, Side side, int price, long qty)
     {
-        int tick = to_tick(price);
+        int tick = price;
 
         if (qty <= 0 || !is_valid_price(side, tick) || orders_.count(id) != 0)
         {
@@ -114,7 +114,7 @@ public:
             auto bid = bids_.begin();
 
             b.has_bid = true;
-            b.bid_price = to_price(bid->first);
+            b.bid_price = bid->first;
             b.bid_qty = bid->second.total_qty;
         }
 
@@ -122,7 +122,7 @@ public:
         {
             auto ask = asks_.begin();
             b.has_ask = true;
-            b.ask_price = to_price(ask->first);
+            b.ask_price = ask->first;
             b.ask_qty = ask->second.total_qty;
         }
         return b;
