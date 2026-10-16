@@ -1,0 +1,80 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 2  of event 'cpu_atom/cycles/Pu'
+# Event count (approx.): 249998
+#
+# Overhead  Command  Shared Object  Symbol                                                                                                                                                                               
+# ........  .......  .............  .....................................................................................................................................................................................
+#
+    50.00%  bench    bench          [.] make_workload(int)
+            |
+            ---void std::__new_allocator<Operation>::construct<Operation, Operation>(Operation*, Operation&&) (inlined)
+               void std::allocator_traits<std::allocator<Operation> >::construct<Operation, Operation>(std::allocator<Operation>&, Operation*, Operation&&) (inlined)
+               Operation& std::vector<Operation, std::allocator<Operation> >::emplace_back<Operation>(Operation&&) (inlined)
+               std::vector<Operation, std::allocator<Operation> >::push_back(Operation&&) (inlined)
+               make_workload(int)
+               main
+               __libc_start_call_main
+               call_init (inlined)
+               __libc_start_main_impl (inlined)
+               _start
+
+    50.00%  bench    bench          [.] std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand()
+            |
+            ---std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand()
+               make_workload(int)
+               main
+               __libc_start_call_main
+               call_init (inlined)
+               __libc_start_main_impl (inlined)
+               _start
+
+
+
+# Samples: 4K of event 'cpu_core/cycles/Pu'
+# Event count (approx.): 4423859059
+#
+# Overhead  Command  Shared Object         Symbol                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+# ........  .......  ....................  .......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+#
+    28.80%  bench    bench                 [.] HeapOrderBook::cancel_order(unsigned long)
+            |          
+            |--23.13%--std::_Rb_tree<unsigned long, std::pair<unsigned long const, HeapOrder>, std::_Select1st<std::pair<unsigned long const, HeapOrder> >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, HeapOrder> > >::_S_right(std::_Rb_tree_node_base*) (inlined)
+            |          std::_Rb_tree<unsigned long, std::pair<unsigned long const, HeapOrder>, std::_Select1st<std::pair<unsigned long const, HeapOrder> >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, HeapOrder> > >::_M_lower_bound(std::_Rb_tree_node<std::pair<unsigned long const, HeapOrder> >*, std::_Rb_tree_node_base*, unsigned long const&) (inlined)
+            |          std::_Rb_tree<unsigned long, std::pair<unsigned long const, HeapOrder>, std::_Select1st<std::pair<unsigned long const, HeapOrder> >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, HeapOrder> > >::find(unsigned long const&) (inlined)
+            |          std::map<unsigned long, HeapOrder, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, HeapOrder> > >::find(unsigned long const&) (inlined)
+            |          HeapOrderBook::cancel_order(unsigned long)
+            |          Metric run_single<HeapOrderBook>(std::vector<Operation, std::allocator<Operation> > const&)
+            |          std::vector<Metric, std::allocator<Metric> >::push_back(Metric const&) (inlined)
+            |          void run_bench<HeapOrderBook>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<Operation, std::allocator<Operation> > const&)
+            |          main
+            |          __libc_start_call_main
+            |          call_init (inlined)
+            |          __libc_start_main_impl (inlined)
+            |          _start
+            |          
+            |--3.18%--std::_Rb_tree<unsigned long, std::pair<unsigned long const, HeapOrder>, std::_Select1st<std::pair<unsigned long const, HeapOrder> >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, HeapOrder> > >::_M_lower_bound(std::_Rb_tree_node<std::pair<unsigned long const, HeapOrder> >*, std::_Rb_tree_node_base*, unsigned long const&) (inlined)
+            |          std::_Rb_tree<unsigned long, std::pair<unsigned long const, HeapOrder>, std::_Select1st<std::pair<unsigned long const, HeapOrder> >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, HeapOrder> > >::find(unsigned long const&) (inlined)
+            |          std::map<unsigned long, HeapOrder, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, HeapOrder> > >::find(unsigned long const&) (inlined)
+            |          HeapOrderBook::cancel_order(unsigned long)
+            |          Metric run_single<HeapOrderBook>(std::vector<Operation, std::allocator<Operation> > const&)
+            |          std::vector<Metric, std::allocator<Metric> >::push_back(Metric const&) (inlined)
+            |          void run_bench<HeapOrderBook>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<Operation, std::allocator<Operation> > const&)
+            |          main
+            |          __libc_start_call_main
+            |          call_init (inlined)
+            |          __libc_start_main_impl (inlined)
+            |          _start
+            |          
+             --1.15%--std::_Rb_tree<unsigned long, std::pair<unsigned long const, HeapOrder>, std::_Select1st<std::pair<unsigned long const, HeapOrder> >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, HeapOrder> > >::_S_left(std::_Rb_tree_node_base*) (inlined)
+                       std::_Rb_tree<unsigned long, std::pair<unsigned long const, HeapOrder>, std::_Select1st<std::pair<unsigned long const, HeapOrder> >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, HeapOrder> > >::_M_lower_bound(std::_Rb_tree_node<std::pair<unsigned long const, HeapOrder> >*, std::_Rb_tree_node_base*, unsigned long const&) (inlined)
+                       std::_Rb_tree<unsigned long, std::pair<unsigned long const, HeapOrder>, std::_Select1st<std::pair<unsigned long const, HeapOrder> >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, HeapOrder> > >::find(unsigned long const&) (inlined)
+                       std::map<unsigned long, HeapOrder, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, HeapOrder> > >::find(unsigned long const&) (inlined)
+                       HeapOrderBook::cancel_order(unsigned long)
+                       Metric run_single<HeapOrderBook>(std::vector<Operation, std::allocator<Operation> > const&)
+                       std::vector<Metric, std::allocator<Metric> >::push_back(Metric const&) (inlined)
+                       void run_bench<HeapOrderBook>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<Operation, std::allocator<Operation> > const&)
+                       main

@@ -1,0 +1,80 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 3  of event 'cpu_atom/cycles/Pu'
+# Event count (approx.): 423001
+#
+# Overhead  Command  Shared Object     Symbol                                                                                                                                                                                                                                                                                                                                                                                                                                            
+# ........  .......  ................  ..................................................................................................................................................................................................................................................................................................................................................................................................................................................
+#
+    40.90%  bench    [vdso]            [.] 0x0000000000000998
+            |
+            ---0x7206cd09999b
+               __clock_gettime (inlined)
+               std::chrono::_V2::steady_clock::now()
+               Metric run_single<FixedOrderBook>(std::vector<Operation, std::allocator<Operation> > const&)
+               std::vector<Metric, std::allocator<Metric> >::push_back(Metric const&) (inlined)
+               void run_bench<FixedOrderBook>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<Operation, std::allocator<Operation> > const&)
+               main
+               __libc_start_call_main
+               call_init (inlined)
+               __libc_start_main_impl (inlined)
+               _start
+
+    29.55%  bench    bench             [.] FixedOrderBook::cancel_order(unsigned long)
+            |
+            ---FixedOrderBook::cancel_order(unsigned long)
+               Metric run_single<FixedOrderBook>(std::vector<Operation, std::allocator<Operation> > const&)
+               std::vector<Metric, std::allocator<Metric> >::push_back(Metric const&) (inlined)
+               void run_bench<FixedOrderBook>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<Operation, std::allocator<Operation> > const&)
+               main
+               __libc_start_call_main
+               call_init (inlined)
+               __libc_start_main_impl (inlined)
+               _start
+
+    29.55%  bench    bench             [.] std::_Hashtable<unsigned long, std::pair<unsigned long const, OrderInfo>, std::allocator<std::pair<unsigned long const, OrderInfo> >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::find(unsigned long const&) const [clone .isra.0]
+            |
+            ---std::_Hashtable<unsigned long, std::pair<unsigned long const, OrderInfo>, std::allocator<std::pair<unsigned long const, OrderInfo> >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::find(unsigned long const&) const (inlined)
+               std::vector<Metric, std::allocator<Metric> >::push_back(Metric const&) (inlined)
+               void run_bench<FixedOrderBook>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<Operation, std::allocator<Operation> > const&)
+               main
+               __libc_start_call_main
+               call_init (inlined)
+               __libc_start_main_impl (inlined)
+               _start
+
+
+
+# Samples: 2K of event 'cpu_core/cycles/Pu'
+# Event count (approx.): 2363556195
+#
+# Overhead  Command  Shared Object         Symbol                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+# ........  .......  ....................  ..........................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+#
+    27.33%  bench    bench                 [.] FixedOrderBook::cancel_order(unsigned long)
+            |          
+            |--21.31%--FixedOrderBook::cancel_order(unsigned long)
+            |          Metric run_single<FixedOrderBook>(std::vector<Operation, std::allocator<Operation> > const&)
+            |          std::vector<Metric, std::allocator<Metric> >::push_back(Metric const&) (inlined)
+            |          void run_bench<FixedOrderBook>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<Operation, std::allocator<Operation> > const&)
+            |          main
+            |          __libc_start_call_main
+            |          call_init (inlined)
+            |          __libc_start_main_impl (inlined)
+            |          _start
+            |          
+            |--4.17%--std::__detail::_Mod_range_hashing::operator()(unsigned long, unsigned long) const (inlined)
+            |          std::__detail::_Hash_code_base<unsigned long, std::pair<unsigned long const, OrderInfo>, std::__detail::_Select1st, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, false>::_M_bucket_index(std::__detail::_Hash_node_value<std::pair<unsigned long const, OrderInfo>, false> const&, unsigned long) const (inlined)
+            |          std::_Hashtable<unsigned long, std::pair<unsigned long const, OrderInfo>, std::allocator<std::pair<unsigned long const, OrderInfo> >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::_M_bucket_index(std::__detail::_Hash_node_value<std::pair<unsigned long const, OrderInfo>, false> const&) const (inlined)
+            |          std::_Hashtable<unsigned long, std::pair<unsigned long const, OrderInfo>, std::allocator<std::pair<unsigned long const, OrderInfo> >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::_M_erase(unsigned long, std::__detail::_Hash_node_base*, std::__detail::_Hash_node<std::pair<unsigned long const, OrderInfo>, false>*) (inlined)
+            |          std::_Hashtable<unsigned long, std::pair<unsigned long const, OrderInfo>, std::allocator<std::pair<unsigned long const, OrderInfo> >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::erase(std::__detail::_Node_const_iterator<std::pair<unsigned long const, OrderInfo>, false, false>) (inlined)
+            |          std::_Hashtable<unsigned long, std::pair<unsigned long const, OrderInfo>, std::allocator<std::pair<unsigned long const, OrderInfo> >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::erase(std::__detail::_Node_iterator<std::pair<unsigned long const, OrderInfo>, false, false>) (inlined)
+            |          std::unordered_map<unsigned long, OrderInfo, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, OrderInfo> > >::erase(std::__detail::_Node_iterator<std::pair<unsigned long const, OrderInfo>, false, false>) (inlined)
+            |          FixedOrderBook::cancel_order(unsigned long)
+            |          Metric run_single<FixedOrderBook>(std::vector<Operation, std::allocator<Operation> > const&)
+            |          std::vector<Metric, std::allocator<Metric> >::push_back(Metric const&) (inlined)
+            |          void run_bench<FixedOrderBook>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<Operation, std::allocator<Operation> > const&)
+            |          main
